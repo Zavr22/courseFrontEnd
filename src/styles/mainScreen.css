@@ -241,6 +241,9 @@ body {
   font-size: 24px;
   opacity: 1;
   text-align: left;
+  border: none;
+  background: none;
+
 }
 .v3_22 {
   width: 104px;
@@ -253,6 +256,9 @@ body {
   font-size: 24px;
   opacity: 1;
   text-align: left;
+  border: none;
+  background: none;
+
 }
 .v3_23 {
   width: 64px;
@@ -265,6 +271,9 @@ body {
   font-size: 24px;
   opacity: 1;
   text-align: left;
+  border: none;
+  background: none;
+
 }
 .v3_24 {
   width: 93px;
@@ -277,6 +286,9 @@ body {
   font-size: 24px;
   opacity: 1;
   text-align: left;
+  border: none;
+  background: none;
+
 }
 .v3_25 {
   width: 213px;
@@ -363,4 +375,26 @@ body {
   font-size: 24px;
   opacity: 1;
   text-align: center;
+}
+
+
+.v3_21:hover{
+  background-color: #ff0000; /* изменение цвета фона при наведении курсора */
+  color: #fff; /* изменение цвета текста при наведении курсора */
+  border: 2px solid #ff0000;
+}
+.v3_22:hover{
+  background-color: #ff0000; /* изменение цвета фона при наведении курсора */
+  color: #fff; /* изменение цвета текста при наведении курсора */
+  border: 2px solid #ff0000;
+}
+.v3_23:hover{
+  background-color: #ff0000; /* изменение цвета фона при наведении курсора */
+  color: #fff; /* изменение цвета текста при наведении курсора */
+  border: 2px solid #ff0000;
+}
+.v3_24:hover{
+  background-color: #ff0000; /* изменение цвета фона при наведении курсора */
+  color: #fff; /* изменение цвета текста при наведении курсора */
+  border: 2px solid #ff0000;
 }
