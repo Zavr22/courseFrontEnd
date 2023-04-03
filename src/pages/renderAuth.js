@@ -20,7 +20,11 @@ form.addEventListener('submit', async (event) => {
         });
 
         if (response.ok) {
+            const data = await response.json();
+            const { id } = data; 
+            localStorage.setItem('userId', id);
             window.location.href = 'mainScreen.html';
+            console.log('id was saved to local storage')
         } else {
             const error = await response.json();
             console.error(error);
