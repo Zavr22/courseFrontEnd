@@ -1,20 +1,19 @@
-
-
-const form = document.querySelector('form');
+const form = document.getElementById('settings_form');
 const submBtn = form.querySelector('button[type="submit"]');
 const userId = localStorage.getItem('userId');
+
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const formData = new FormData(form);
     const roi = formData.get('roi');
-
+    console.log(roi)
     try {
         const response = await fetch('http://localhost:8000/settings/profit', {
             method: 'POST',
             body: JSON.stringify({ roi }),
             headers: {
-                'Authorization': `Bearer ${userId}`,
                 'Content-Type': 'application/json',
+                'X-User-Id': userId,
             },
         });
 
