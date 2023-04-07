@@ -1,0 +1,27 @@
+{
+  "name": "insightly-crm",
+  "version": "0.1.0",
+  "private": true,
+  "main": "electron-main.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev-electron": "electron .",
+    "dev-vue": "vue-cli-service serve",
+    "dev": "vue-cli-service serve & sleep 5 && electron .",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.3",
+    "vuex": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "electron": "24.0.0",
+    "typescript": "~4.5.5"
+  }
+}
