@@ -1,0 +1,45 @@
+body {
+  display: flex;
+  background: url(/img/Rectangle\ 8.jpg);
+  font-family: 'Open Sans';
+  color: white;
+}
+
+h2 {
+  position: absolute;
+  width: 155px;
+  height: 49px;
+  left: 456px;
+  top: 54px;
+
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 49px;
+}
+
+.product_type {
+  position: absolute;
+  display: grid;
+  width: 932px;
+  height: 209px;
+  left: 456px;
+  top: 270px;
+}
+
+button {
+  width: 932px;
+  height: 38px;
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 33px;
+  border: none;
+
+  background: rgba(228, 228, 228, 0.57);
+  box-shadow: inset 0px 4px 30px rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(23px);
+  border-radius: 5px;
+
+
+}
+
