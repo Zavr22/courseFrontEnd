@@ -7,14 +7,14 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "home-page",
   data() {
     return {
       mainTitle: "Main page",
-    }
+    };
   },
   created() {
     if (!this.isAuthenticated) {
@@ -23,15 +23,13 @@ export default defineComponent({
   },
   computed: {
     userID(): string {
-      return (localStorage.userID === undefined) ? "" : localStorage.userID;
+      return localStorage.userID === undefined ? "" : localStorage.userID;
     },
     isAuthenticated(): boolean {
       return this.userID !== "";
-    }
-  }
-})
+    },
+  },
+});
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
