@@ -1,15 +1,24 @@
 <template>
   <div id="app">
-    Hello World!
+    <router-view></router-view>
   </div>
 </template>
 
-<script>
-export default {
-  name: "App"
-}
+<script lang="ts">
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  name: "app",
+})
 </script>
 
-<style scoped>
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", serif;
+}
 
 </style>

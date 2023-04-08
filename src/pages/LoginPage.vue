@@ -10,11 +10,11 @@
       <div class="login__content">
         <h3 class="login__title">{{ loginTitle }}</h3>
         <p class="login__subtitle">{{ loginSubtitle }}</p>
-        <login-form></login-form>
+        <login-form class="login__form"></login-form>
         <p class="login__no_account">Don't have an account yet?</p>
         <router-link to="/register" class="login__register">
-          <p class="login_register_text">Register</p>
-          <svg class="login_register_arrow"></svg>
+          <span class="login_register__text">Register</span>
+          <span class="login_register__arrow"></span>
         </router-link>
       </div>
     </div>
