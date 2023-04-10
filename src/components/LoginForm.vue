@@ -1,7 +1,15 @@
 <template>
   <div>
+    <div v-if="isInvalidData" class="form__incorrect-cred">
+      {{ invalidDataText }}
+    </div>
     <form class="form" @submit="sendUserCredentials">
-      <input class="email" v-model="email" placeholder="Email" type="text" />
+      <input
+        class="username"
+        v-model="username"
+        placeholder="Username"
+        type="text"
+      />
       <input
         class="password"
         v-model="password"
@@ -36,17 +44,25 @@ export default defineComponent({
   name: "login-form",
   data() {
     return {
-      email: "" as String,
+      invalidDataText: "Invalid username and/or password" as String,
+      username: "" as String,
       password: "" as String,
       isRemember: false as Boolean,
     };
   },
   emits: ["log-in"],
+  props: {
+    isInvalidData: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
   methods: {
     sendUserCredentials(event: Event) {
       event.preventDefault();
       const userCredentials: IUserCredentials = {
-        email: this.email,
+        username: this.username,
         password: this.password,
         isRemember: this.isRemember,
       };
@@ -56,6 +72,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-@import "@/assets/styles/LoginForm.css";
-</style>
+<style src="@/assets/styles/LoginForm.css" scoped></style>

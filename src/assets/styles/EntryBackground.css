@@ -1,0 +1,30 @@
+.app_info__title {
+  text-transform: uppercase;
+}
+
+.entry_background {
+  width: 1200px;
+  background-image: url("@/assets/img/background.jpg");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+
+.login__app_info {
+  padding-right: 170px;
+  padding-left: 150px;
+}
+
+.app_info__title {
+  color: #ffffff;
+  font-size: 96px;
+  font-weight: 600;
+  line-height: 130px;
+}
+
+.app_info__subtitle {
+  color: #ffffff;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 65px;
+}

@@ -3,7 +3,8 @@
   flex-direction: column;
 }
 
-.email, .password {
+.username,
+.password {
   padding: 12px 20px;
   height: 50px;
   background-color: rgba(217, 217, 217, 0.51);
@@ -14,10 +15,10 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 27px;
-  text-transform: lowercase;
 }
 
-.email::placeholder, .password::placeholder {
+.username::placeholder,
+.password::placeholder {
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -70,7 +71,7 @@
 }
 
 .remember__checkbox + label::before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -90,7 +91,7 @@
 }
 
 /* стили при наведении курсора на checkbox */
-.remember__checkbox:not(:disabled):not(:checked)+label:hover::before {
+.remember__checkbox:not(:disabled):not(:checked) + label:hover::before {
   background-color: rgba(162, 162, 162, 0.51);
 }
 
@@ -106,12 +107,12 @@
 /*}*/
 
 /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
-.remember__checkbox:focus:not(:checked)+label::before {
+.remember__checkbox:focus:not(:checked) + label::before {
   border-color: #000000;
 }
 
 /* стили для чекбокса, находящегося в состоянии disabled */
-.remember__checkbox:disabled+label::before {
+.remember__checkbox:disabled + label::before {
   background-color: gray;
 }
 
@@ -144,5 +145,11 @@
   font-size: 20px;
   line-height: 27px;
 
-  color: #FFFFFF;
+  color: #ffffff;
+}
+
+.form__incorrect-cred {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #ff0000;
 }

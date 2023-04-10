@@ -1,5 +1,5 @@
 interface IUserCredentials {
-  email: String;
+  username: String;
   password: String;
   isRemember: Boolean;
 }

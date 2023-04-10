@@ -1,15 +1,13 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <div class="products">Products component</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "app",
+  name: "products",
 });
 </script>
 
-<style src="@/assets/styles/normalize.css"></style>
+<style scoped></style>

@@ -1,16 +1,15 @@
 <template>
   <div class="login">
     <div class="wrapper login__wrapper">
-      <div class="login__background">
-        <div class="app_info login__app_info">
-          <h1 class="app_info__title">{{ appTitle }}</h1>
-          <h2 class="app_info__subtitle">{{ appSubtitle }}</h2>
-        </div>
-      </div>
+      <entry class="login__background"></entry>
       <div class="login__content">
         <h3 class="login__title">{{ loginTitle }}</h3>
         <p class="login__subtitle">{{ loginSubtitle }}</p>
-        <login-form class="login__form" @log-in="proceedToLogIn"></login-form>
+        <login-form
+          :isInvalidData="invalidData"
+          class="login__form"
+          @log-in="proceedToLogIn"
+        ></login-form>
         <p class="login__no_account">{{ noAccount }}</p>
         <router-link class="login__register" to="/registration">
           <span class="login_register__text">{{ registrationText }}</span>
@@ -22,49 +21,70 @@
 </template>
 
 <script lang="ts">
+import axios from "axios";
 import { defineComponent } from "vue";
 import LoginForm from "@/components/LoginForm.vue";
 import IUserCredentials from "@/components/interfaces/IUserCredentials";
+import Entry from "@/components/EntryBackground.vue";
 
 export default defineComponent({
   name: "login-page",
   components: {
+    Entry,
     LoginForm,
   },
   data() {
     return {
-      // TODO: erase this credentials
-      defaultUserCredentials: {
-        email: "test",
-        password: "test",
-        isRemember: false,
-      } as IUserCredentials,
-      appTitle: "Insightly" as String,
-      appSubtitle: "CRM software" as String,
       noAccount: "Don't have an account yet?" as String,
       registrationText: "Registration" as String,
       loginTitle: "Hello!" as String,
       loginSubtitle: "Enter your email and password to log in" as String,
+      invalidData: false as Boolean,
     };
   },
   methods: {
     async getUserData(
       userCredentials: IUserCredentials
     ): Promise<IUser | undefined> {
-      if (
-        userCredentials.email === this.defaultUserCredentials.email &&
-        userCredentials.password === this.defaultUserCredentials.password
-      ) {
-        return { id: 1, isRemember: userCredentials.isRemember } as IUser;
+      try {
+        console.log(process.env.VUE_APP_SERVER_URL);
+        const { data, status } = await axios.post(
+          `${process.env.VUE_APP_SERVER_URL}/auth/signIn`,
+          // "http://localhost:8000/auth/signIn",
+          {
+            headers: {
+              Accept: "application/json",
+            },
+            username: userCredentials.username,
+            password: userCredentials.password,
+          }
+        );
+
+        if (status !== 200) {
+          return undefined;
+        }
+
+        return {
+          id: data.id,
+          isRemember: userCredentials.isRemember,
+        };
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          console.log("error message: ", error.message);
+        } else {
+          console.log("unexpected error: ", error);
+        }
+        return undefined;
       }
-      return undefined;
     },
     async proceedToLogIn(userCredentials: IUserCredentials): Promise<void> {
       const user: IUser | undefined = await this.getUserData(userCredentials);
       if (user !== undefined) {
+        console.log("ok");
         this.saveUserToLocalStorage(user);
         this.$router.push("/");
       } else {
+        this.invalidData = true;
         console.log("wrong user");
       }
     },
@@ -75,6 +95,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-@import "@/assets/styles/LoginPage.css";
-</style>
+<style src="@/assets/styles/LoginPage.css" scoped></style>

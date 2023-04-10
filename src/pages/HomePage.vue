@@ -1,16 +1,19 @@
 <template>
   <div class="home">
-    <div class="wrapper">
-      <h1 class="home__title">{{ mainTitle }}</h1>
+    <div class="wrapper home__wrapper">
+      <navigation class="home__navigation"></navigation>
+      <router-view class="home__content"></router-view>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Navigation from "@/components/Navigation.vue";
 
 export default defineComponent({
   name: "home-page",
+  components: { Navigation },
   data() {
     return {
       mainTitle: "Main page",
@@ -32,4 +35,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style src="@/assets/styles/HomePage.css" scoped></style>

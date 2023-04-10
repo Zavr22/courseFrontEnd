@@ -1,0 +1,47 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.inputs input[type="text"],
+.inputs input[type="password"] {
+  padding: 12px 20px;
+  height: 50px;
+  background-color: rgba(217, 217, 217, 0.51);
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+.form__register {
+  margin-top: 70px;
+}
+
+.register {
+  background-color: #2c4b85;
+  padding: 14px 67px;
+  width: max-content;
+}
+
+.register:hover {
+  cursor: pointer;
+}
+
+.register__text {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+
+  color: #ffffff;
+}

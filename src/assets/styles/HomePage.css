@@ -1,0 +1,14 @@
+.home__wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.home__navigation {
+  width: 30%;
+}
+
+.home__content {
+  width: 70%;
+  background-image: url("@/assets/img/background.jpg");
+  background-size: cover;
+}
