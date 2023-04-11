@@ -32,6 +32,29 @@
 }
 
 .menu__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item__content {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.item__label {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+
+  color: #000000;
+}
+
+.item__text {
+  margin-left: 25px;
+  display: inline-block;
+
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -40,6 +63,52 @@
   color: #000000;
 }
 
-.menu__item_active {
+.item__rect {
+  width: 10px;
+  height: 33px;
+}
+
+.menu__item_active .item__rect {
+  background-color: #2c4b85;
+}
+
+.menu__item_active .item__label,
+.menu__item_active .item__text {
   color: #2c4b85;
+}
+
+.menu__item_active .item__label {
+  background-color: #2c4b85;
+}
+
+.comm-offer-item__label {
+  -webkit-mask: url("@/assets/img/comm-offers-label.svg") no-repeat 100% 100%;
+  mask: url("@/assets/img/comm-offers-label.svg") no-repeat 100% 100%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background-color: #000000;
+}
+
+.products-item__label {
+  -webkit-mask: url("@/assets/img/products-label.svg") no-repeat 100% 100%;
+  mask: url("@/assets/img/products-label.svg") no-repeat 100% 100%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background-color: #000000;
+}
+
+.deals-item__label {
+  -webkit-mask: url("@/assets/img/deals-label.svg") no-repeat 100% 100%;
+  mask: url("@/assets/img/deals-label.svg") no-repeat 100% 100%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background-color: #000000;
+}
+
+.settings-item__label {
+  -webkit-mask: url("@/assets/img/settings-label.svg") no-repeat 100% 100%;
+  mask: url("@/assets/img/settings-label.svg") no-repeat 100% 100%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background-color: #000000;
 }

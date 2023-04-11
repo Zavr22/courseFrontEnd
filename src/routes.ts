@@ -1,43 +1,39 @@
-import { createRouter, createWebHistory, Router } from "vue-router";
+import HomePage from "@/pages/HomePage.vue";
+import Products from "@/components/Products.vue";
+import Monitors from "@/components/Monitors.vue";
+import LoginPage from "@/pages/LoginPage.vue";
+import RegistrationPage from "@/pages/RegistrationPage.vue";
 
 const routes = [
   {
     name: "home-page",
     path: "/",
-    redirect: { path: "/commercial-offer" },
-    component: () => import("@/pages/HomePage.vue"),
+    // redirect: { path: "/commercial-offer" },
+    component: HomePage,
     children: [
-      {
-        name: "commercial-offer",
-        path: "commercial-offer",
-        component: () => import("@/components/CommercialOffer.vue"),
-      },
       {
         name: "products",
         path: "products",
-        component: () => import("@/components/Products.vue"),
-      },
-      {
-        name: "deals",
-        path: "deals",
-        component: () => import("@/components/Deals.vue"),
-      },
-      {
-        name: "settings",
-        path: "settings",
-        component: () => import("@/components/Settings.vue"),
+        component: Products,
+        children: [
+          {
+            name: "product-monitors",
+            path: "monitors",
+            component: Monitors,
+          },
+        ],
       },
     ],
   },
   {
     name: "login",
     path: "/login",
-    component: () => import("@/pages/LoginPage.vue"),
+    component: LoginPage,
   },
   {
     name: "registration",
     path: "/registration",
-    component: () => import("@/pages/RegistrationPage.vue"),
+    component: RegistrationPage,
   },
 ];
 

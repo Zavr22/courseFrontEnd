@@ -1,0 +1,17 @@
+.wrapper {
+  padding-left: 20px;
+  padding-top: 10px;
+  height: 100vh;
+  display: flex;
+}
+
+.categories__item {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.categories {
+  align-self: center;
+  margin: 0 auto;
+}

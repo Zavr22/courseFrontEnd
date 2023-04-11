@@ -5,34 +5,51 @@
     </div>
     <nav class="menu">
       <ul class="menu__list">
-        <!--      TODO: realize commercial offer component-->
         <router-link
           to="/commercial-offer"
-          class="menu__item"
-          exact-active-class="menu__item_active"
-          >Commercial Offer</router-link
+          class="menu__item comm-offer-item item"
+          active-class="menu__item_active"
         >
-        <!--      TODO: realize products component-->
+          <div class="item__content">
+            <span class="comm-offer-item__label item__label"></span>
+            <span class="item__text">Commercial Offer</span>
+          </div>
+          <div class="item__rect"></div>
+        </router-link>
         <router-link
           to="/products"
-          class="menu__item"
-          exact-active-class="menu__item_active"
-          >Products</router-link
+          class="menu__item products-item item"
+          active-class="menu__item_active"
+          append
         >
-        <!--      TODO: realize deals component-->
+          <div class="item__content">
+            <span class="products-item__label item__label"></span>
+            <span class="item__text">Products</span>
+          </div>
+          <div class="item__rect"></div>
+        </router-link>
         <router-link
           to="/deals"
-          class="menu__item"
-          exact-active-class="menu__item_active"
-          >Deals</router-link
+          class="menu__item deals-item item"
+          active-class="menu__item_active"
         >
-        <!--      TODO: realize settings component-->
+          <div class="item__content">
+            <span class="deals-item__label item__label"></span>
+            <span class="item__text">Deals</span>
+          </div>
+          <div class="item__rect"></div>
+        </router-link>
         <router-link
           to="/settings"
-          class="menu__item"
-          exact-active-class="menu__item_active"
-          >Settings</router-link
+          class="menu__item settings-item item"
+          active-class="menu__item_active"
         >
+          <div class="item__content">
+            <span class="settings-item__label item__label"></span>
+            <span class="item__text">Settings</span>
+          </div>
+          <div class="item__rect"></div>
+        </router-link>
       </ul>
     </nav>
   </div>
@@ -44,11 +61,6 @@ import { RouteRecordName } from "vue-router";
 
 export default defineComponent({
   name: "navigation",
-  computed: {
-    currentRouteName(): RouteRecordName {
-      return this.$route.name!;
-    },
-  },
 });
 </script>
 

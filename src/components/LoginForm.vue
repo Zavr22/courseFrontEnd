@@ -19,16 +19,26 @@
       <router-link class="forgot_password" to="/restorePassword"
         >Forgot your password?
       </router-link>
-      <div class="remember form__remember">
-        <input
-          class="remember__checkbox"
-          v-model="isRemember"
-          type="checkbox"
-          name="remember"
-          id="remember"
-        />
-        <label class="remember__label" for="remember">Remember me</label>
-      </div>
+      <base-checkbox
+        class="form__remember"
+        :value="checkboxTitle"
+        :checkbox="isRemember"
+        @update:checkbox="
+          (value: Boolean) => {
+            isRemember = value;
+          }
+        "
+      ></base-checkbox>
+      <!--      <div class="remember form__remember">-->
+      <!--        <input-->
+      <!--          class="remember__checkbox"-->
+      <!--          v-model="isRemember"-->
+      <!--          type="checkbox"-->
+      <!--          name="remember"-->
+      <!--          id="remember"-->
+      <!--        />-->
+      <!--        <label class="remember__label" for="remember">Remember me</label>-->
+      <!--      </div>-->
       <button class="form__log_in log_in" type="submit">
         <span class="log_in__text">Log in</span>
       </button>
@@ -39,15 +49,20 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import IUserCredentials from "@/components/interfaces/IUserCredentials";
+import BaseCheckbox from "@/components/ui/BaseCheckbox.vue";
 
 export default defineComponent({
   name: "login-form",
+  components: {
+    BaseCheckbox,
+  },
   data() {
     return {
       invalidDataText: "Invalid username and/or password" as String,
       username: "" as String,
       password: "" as String,
       isRemember: false as Boolean,
+      checkboxTitle: "Remember me?" as String,
     };
   },
   emits: ["log-in"],
