@@ -1,7 +1,7 @@
 interface IUserCredentials {
-  username: String;
-  password: String;
-  isRemember: Boolean;
+  username: string;
+  password: string;
+  isRemember: boolean;
 }
 
 export default IUserCredentials;

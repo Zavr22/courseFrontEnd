@@ -49,11 +49,11 @@ export default defineComponent({
   emits: ["register-user"],
   data() {
     return {
-      fullName: "" as String,
-      jobTitle: "" as String,
-      username: "" as String,
-      password: "" as String,
-      passwordConfirmation: "" as String,
+      fullName: "" as string,
+      jobTitle: "" as string,
+      username: "" as string,
+      password: "" as string,
+      passwordConfirmation: "" as string,
     };
   },
   methods: {

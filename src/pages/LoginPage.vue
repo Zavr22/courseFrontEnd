@@ -39,7 +39,7 @@ export default defineComponent({
       registrationText: "Registration" as String,
       loginTitle: "Hello!" as String,
       loginSubtitle: "Enter your email and password to log in" as String,
-      invalidData: false as Boolean,
+      invalidData: false as boolean,
     };
   },
   methods: {

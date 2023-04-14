@@ -6,7 +6,7 @@
     <nav class="menu">
       <ul class="menu__list">
         <router-link
-          to="/commercial-offer"
+          :to="{ name: 'commercial-offer' }"
           class="menu__item comm-offer-item item"
           active-class="menu__item_active"
         >
@@ -17,7 +17,7 @@
           <div class="item__rect"></div>
         </router-link>
         <router-link
-          to="/products"
+          :to="{ name: 'products' }"
           class="menu__item products-item item"
           active-class="menu__item_active"
           append

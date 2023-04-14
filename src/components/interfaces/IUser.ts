@@ -1,4 +1,4 @@
 interface IUser {
-  id: Number;
-  isRemember: Boolean;
+  id: number;
+  isRemember: boolean;
 }

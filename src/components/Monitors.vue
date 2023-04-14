@@ -2,40 +2,31 @@
   <div class="monitors">
     <h3 class="title">Title: Monitors</h3>
     <base-checkbox
+      class="sort__checkbox"
       :value="sortByPriceTitle"
       @update:checkbox="
         (value) => {
-          if (value) {
-            sortAscendingOrder();
-          } else {
-            sortDescendingOrder();
-          }
+          sortMonitors(value);
         }
       "
     ></base-checkbox>
-    <div class="list">
-      <monitor-item
-        v-for="monitor in monitors"
-        :key="monitor.id"
-        :monitor="monitor"
-      ></monitor-item>
-    </div>
+    <products-list class="monitors-list" :products="monitors"></products-list>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import IMonitor from "@/components/interfaces/IMonitor";
-import MonitorItem from "@/components/ui/MonitorItem.vue";
+import IProduct from "@/components/interfaces/IProduct";
+import ProductsList from "@/components/ProductsList.vue";
 import BaseCheckbox from "@/components/ui/BaseCheckbox.vue";
 
 export default defineComponent({
   name: "product-monitors",
-  components: { BaseCheckbox, MonitorItem },
+  components: { BaseCheckbox, ProductsList },
   data() {
     return {
-      sortByPriceTitle: "Сортировать по возрастанию цены" as String,
-      monitors: [] as Array<IMonitor>,
+      sortByPriceTitle: "Сортировать по возрастанию цены" as string,
+      monitors: [] as Array<IProduct>,
     };
   },
   created() {
@@ -67,18 +58,25 @@ export default defineComponent({
         contrast: "да",
         price: 3000,
       },
-    ] as Array<IMonitor>;
+    ] as Array<IProduct>;
     this.sortDescendingOrder();
   },
   methods: {
+    sortMonitors(value: boolean) {
+      if (value) {
+        this.sortAscendingOrder();
+      } else {
+        this.sortDescendingOrder();
+      }
+    },
     sortAscendingOrder() {
-      this.monitors.sort((a: IMonitor, b: IMonitor) => {
-        return (a.price as number) - (b.price as number);
+      this.monitors.sort((a: IProduct, b: IProduct) => {
+        return a.price - b.price;
       });
     },
     sortDescendingOrder() {
-      this.monitors.sort((a: IMonitor, b: IMonitor) => {
-        return (b.price as number) - (a.price as number);
+      this.monitors.sort((a: IProduct, b: IProduct) => {
+        return b.price - a.price;
       });
     },
   },
@@ -86,16 +84,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.list {
+.monitors-list {
   margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 .title {
   font-weight: bold;
   font-size: 24px;
   line-height: 33px;
+  color: #ffffff;
+}
+
+.sort__checkbox {
   color: #ffffff;
 }
 </style>

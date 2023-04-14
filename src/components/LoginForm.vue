@@ -4,17 +4,17 @@
       {{ invalidDataText }}
     </div>
     <form class="form" @submit="sendUserCredentials">
-      <input
-        class="username"
+      <base-input
         v-model="username"
-        placeholder="Username"
-        type="text"
+        class="username"
+        :placeholder="'Username'"
+        :type="'text'"
       />
-      <input
+      <base-input
         class="password"
         v-model="password"
-        placeholder="Password"
-        type="password"
+        :placeholder="'Password'"
+        :type="'password'"
       />
       <router-link class="forgot_password" to="/restorePassword"
         >Forgot your password?
@@ -24,7 +24,7 @@
         :value="checkboxTitle"
         :checkbox="isRemember"
         @update:checkbox="
-          (value: Boolean) => {
+          (value: boolean) => {
             isRemember = value;
           }
         "
@@ -50,19 +50,21 @@
 import { defineComponent } from "vue";
 import IUserCredentials from "@/components/interfaces/IUserCredentials";
 import BaseCheckbox from "@/components/ui/BaseCheckbox.vue";
+import BaseInput from "@/components/ui/BaseInput.vue";
 
 export default defineComponent({
   name: "login-form",
   components: {
     BaseCheckbox,
+    BaseInput,
   },
   data() {
     return {
-      invalidDataText: "Invalid username and/or password" as String,
-      username: "" as String,
-      password: "" as String,
-      isRemember: false as Boolean,
-      checkboxTitle: "Remember me?" as String,
+      invalidDataText: "Invalid username and/or password" as string,
+      username: "" as string,
+      password: "" as string,
+      isRemember: false as boolean,
+      checkboxTitle: "Remember me?" as string,
     };
   },
   emits: ["log-in"],
@@ -82,6 +84,9 @@ export default defineComponent({
         isRemember: this.isRemember,
       };
       this.$emit("log-in", userCredentials);
+    },
+    updateUsername(value: string) {
+      this.username = value;
     },
   },
 });
