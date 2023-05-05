@@ -13,12 +13,24 @@
           class="products__list"
         ></products-list>
         <div class="control-buttons">
-          <button class="cancel-btn" @click="cancelOffer" type="button">
-            Cancel
-          </button>
-          <button class="approve-btn" @click="approveOffer" type="button">
-            Approve
-          </button>
+          <BaseButton
+            class="cancel-btn"
+            @click="cancelOffer"
+            :button-title="'Cancel'"
+            :button-type="'button'"
+            :button-title-color="'#000000'"
+            :button-background-color="'rgba(217, 217, 217, 1)'"
+          >
+          </BaseButton>
+          <BaseButton
+            class="approve-btn"
+            @click="approveOffer"
+            :button-title="'Approve'"
+            :button-type="'button'"
+            :button-title-color="'#000000'"
+            :button-background-color="'rgba(217, 217, 217, 1)'"
+          >
+          </BaseButton>
         </div>
       </template>
     </div>
@@ -32,6 +44,7 @@ import ProductsList from "@/modules/commercial-offer/components/ProductsList.vue
 import CommercialOfferForm from "@/modules/commercial-offer/components/CommercialOfferForm.vue";
 import IProductParams from "@/modules/commercial-offer/interfaces/IProductParams";
 import IProductData from "@/modules/commercial-offer/interfaces/IProductData";
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default defineComponent({
   name: "commercial-offer",
@@ -41,16 +54,24 @@ export default defineComponent({
       commercialOfferId: -1 as number,
     };
   },
-  components: { CommercialOfferForm, ProductsList },
+  components: { CommercialOfferForm, ProductsList, BaseButton },
   methods: {
     async approveOffer() {
-      await axios.post(`${process.env.VUE_APP_SERVER_URL}/commO/confirm`, {
-        headers: {
-          "Content-Type": "application/json",
-          "X-User-Id": localStorage.getItem("userId"),
+      console.log(localStorage.getItem("userID"));
+
+      await axios.post(
+        `${process.env.VUE_APP_SERVER_URL}/commO/confirm`,
+        {
+          offerId: this.commercialOfferId,
         },
-        offerId: this.commercialOfferId,
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Id": localStorage.getItem("userID"),
+          },
+        }
+      );
+
       this.$router.go(0);
     },
     cancelOffer() {
@@ -60,21 +81,21 @@ export default defineComponent({
       const { data } = await axios.post(
         `${process.env.VUE_APP_SERVER_URL}/prod/getPrE`,
         {
-          headers: {
-            Accept: "application/json",
-          },
           "category-id": product.categoryId,
           quantity: product.quantity,
           brightness: product.brightness,
           contrast: product.contrast,
           weight: product.weight,
           extra_roi: product.extraRoi,
+          focal_distance: product.focalDistance,
         }
       );
 
       this.commercialOfferId = data.commId;
-      console.log(`[dbg] ${this.commercialOfferId}`);
       let totalId: number = 0;
+      if (data.data === null) {
+        return;
+      }
       this.products = data.data.map((product: any) => {
         return {
           ...product,

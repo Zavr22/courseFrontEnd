@@ -9,8 +9,7 @@
 </template>
 
 <script lang="ts">
-import { placeholder } from "@babel/types";
-import { defineComponent, PropType } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "base-input",
@@ -57,6 +56,5 @@ export default defineComponent({
   font-weight: 400;
   font-size: 20px;
   line-height: 27px;
-  text-transform: capitalize;
 }
 </style>

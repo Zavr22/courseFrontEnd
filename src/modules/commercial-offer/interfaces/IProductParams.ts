@@ -6,6 +6,7 @@ interface IProductParams {
   price: number;
   weight: number;
   extraRoi: number;
+  focalDistance?: number;
 }
 
 export default IProductParams;

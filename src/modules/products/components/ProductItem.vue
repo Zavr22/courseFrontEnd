@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import IProduct from "@/components/interfaces/IProduct";
+import IProduct from "@/modules/products/interfaces/IProduct";
 
 export default defineComponent({
   name: "monitor-item",

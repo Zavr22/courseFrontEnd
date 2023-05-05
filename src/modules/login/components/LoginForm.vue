@@ -39,24 +39,31 @@
       <!--        />-->
       <!--        <label class="remember__label" for="remember">Remember me</label>-->
       <!--      </div>-->
-      <button class="form__log_in log_in" type="submit">
-        <span class="log_in__text">Log in</span>
-      </button>
+      <BaseButton
+        class="form__log_in log_in"
+        :button-title="'Log in'"
+        :button-type="'submit'"
+      ></BaseButton>
+      <!--      <button class="form__log_in log_in" type="submit">-->
+      <!--        <span class="log_in__text">Log in</span>-->
+      <!--      </button>-->
     </form>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import IUserCredentials from "@/components/interfaces/IUserCredentials";
+import IUserCredentials from "@/modules/login/interfaces/IUserCredentials";
 import BaseCheckbox from "@/components/ui/BaseCheckbox.vue";
 import BaseInput from "@/components/ui/BaseInput.vue";
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default defineComponent({
   name: "login-form",
   components: {
     BaseCheckbox,
     BaseInput,
+    BaseButton,
   },
   data() {
     return {
@@ -84,9 +91,6 @@ export default defineComponent({
         isRemember: this.isRemember,
       };
       this.$emit("log-in", userCredentials);
-    },
-    updateUsername(value: string) {
-      this.username = value;
     },
   },
 });

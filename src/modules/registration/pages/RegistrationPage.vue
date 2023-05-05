@@ -21,15 +21,14 @@
 
 <script lang="ts">
 import Entry from "@/components/EntryBackground.vue";
-import LoginForm from "@/components/LoginForm.vue";
 import { defineComponent } from "vue";
-import RegistrationForm from "@/components/RegistrationForm.vue";
-import IUserRegistrationData from "@/components/interfaces/IUserRegistrationData";
+import RegistrationForm from "@/modules/registration/components/RegistrationForm.vue";
+import IUserRegistrationData from "@/modules/registration/interfaces/IUserRegistrationData";
 import axios from "axios";
 
 export default defineComponent({
   name: "registration-page",
-  components: { RegistrationForm, LoginForm, Entry },
+  components: { RegistrationForm, Entry },
   data() {
     return {
       registrationTitle: "Hello!" as String,

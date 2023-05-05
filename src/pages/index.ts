@@ -1,9 +1,5 @@
-import LoginPage from "./LoginPage.vue";
-import HomePage from "./HomePage.vue";
-import RegistrationPage from "@/pages/RegistrationPage.vue";
+import LoginPage from "@/pages/HomePage.vue";
 
 export default {
   LoginPage,
-  HomePage,
-  RegistrationPage,
 };

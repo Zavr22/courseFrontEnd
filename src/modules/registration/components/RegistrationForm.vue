@@ -33,20 +33,27 @@
           placeholder="Confirm password"
         />
       </div>
-      <button class="form__register register" type="submit">
-        <span class="register__text">Register</span>
-      </button>
+      <BaseButton
+        class="form__register"
+        :button-title="'Register'"
+        :button-type="'submit'"
+      ></BaseButton>
+      <!--      <button class="form__register register" type="submit">-->
+      <!--        <span class="register__text">Register</span>-->
+      <!--      </button>-->
     </form>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import IUserRegistrationData from "@/components/interfaces/IUserRegistrationData";
+import IUserRegistrationData from "@/modules/registration/interfaces/IUserRegistrationData";
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default defineComponent({
   name: "registration-form",
   emits: ["register-user"],
+  components: { BaseButton },
   data() {
     return {
       fullName: "" as string,

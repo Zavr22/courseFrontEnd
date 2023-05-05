@@ -1,7 +1,7 @@
 <template>
   <div class="monitors">
     <h3 class="title">Title: Monitors</h3>
-    <base-checkbox
+    <BaseCheckbox
       class="sort__checkbox"
       :value="sortByPriceTitle"
       @update:checkbox="
@@ -9,16 +9,17 @@
           sortMonitors(value);
         }
       "
-    ></base-checkbox>
-    <products-list class="monitors-list" :products="monitors"></products-list>
+    ></BaseCheckbox>
+    <ProductsList class="monitors-list" :products="monitors"></ProductsList>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import IProduct from "@/components/interfaces/IProduct";
-import ProductsList from "@/components/ProductsList.vue";
+import IProduct from "@/modules/products/interfaces/IProduct";
+import ProductsList from "@/modules/products/components/ProductsList.vue";
 import BaseCheckbox from "@/components/ui/BaseCheckbox.vue";
+import axios from "axios";
 
 export default defineComponent({
   name: "product-monitors",
@@ -29,39 +30,18 @@ export default defineComponent({
       monitors: [] as Array<IProduct>,
     };
   },
-  created() {
-    this.monitors = [
-      {
-        id: 1,
-        name: "Monitor 1",
-        categoryId: 1,
-        quantity: 1,
-        brightness: "ярко",
-        contrast: "да",
-        price: 5000,
-      },
-      {
-        id: 2,
-        name: "Monitor 2",
-        categoryId: 1,
-        quantity: 1,
-        brightness: "ярко",
-        contrast: "да",
-        price: 7000,
-      },
-      {
-        id: 3,
-        name: "Monitor 3",
-        categoryId: 1,
-        quantity: 1,
-        brightness: "ярко",
-        contrast: "да",
-        price: 3000,
-      },
-    ] as Array<IProduct>;
-    this.sortDescendingOrder();
+  mounted() {
+    this.getMonitors();
   },
   methods: {
+    async getMonitors() {
+      let data = await axios.get(
+        `${process.env.VUE_APP_SERVER_URL}/prod/monitors`
+      );
+      console.log(data);
+      this.monitors = data.data.data;
+      this.sortDescendingOrder();
+    },
     sortMonitors(value: boolean) {
       if (value) {
         this.sortAscendingOrder();
@@ -84,6 +64,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.monitors {
+  width: 100%;
+}
 .monitors-list {
   margin-top: 20px;
 }

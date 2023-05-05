@@ -40,6 +40,7 @@
           <div class="item__rect"></div>
         </router-link>
         <router-link
+          v-if="isDirector"
           to="/settings"
           class="menu__item settings-item item"
           active-class="menu__item_active"
@@ -57,10 +58,14 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { RouteRecordName } from "vue-router";
 
 export default defineComponent({
   name: "navigation",
+  computed: {
+    isDirector(): boolean {
+      return localStorage.getItem("userID") === "1";
+    },
+  },
 });
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <form class="form" autocomplete="off">
+  <form class="form" autocomplete="off" @submit="onSubmit">
     <div class="inputs">
       <select v-model="selectedProductTitle">
         <option
@@ -42,15 +42,25 @@
           :type="'text'"
           :placeholder="'Roi'"
         ></base-input>
+        <BaseInput
+          v-if="selectedProductTitle === 'Проекторы'"
+          class="input"
+          v-model.number="(selectedProduct.focalDistance as number)"
+          :type="'text'"
+          :placeholder="'Фокусное расстояние'"
+        ></BaseInput>
       </template>
     </div>
-    <button
+    <BaseButton
       class="form__pick-up pick-up"
       v-if="selectedProductTitle !== ''"
-      @click="onClick"
+      :button-title="'Подобрать'"
+      :button-type="'submit'"
+      :button-title-color="'#000000'"
+      :button-background-color="'rgba(217, 217, 217, 1)'"
     >
       Подобрать
-    </button>
+    </BaseButton>
   </form>
 </template>
 
@@ -59,6 +69,7 @@ import { defineComponent } from "vue";
 import IProductParams from "@/modules/commercial-offer/interfaces/IProductParams";
 import IProductCategoryData from "@/modules/commercial-offer/interfaces/IProductCategoryData";
 import BaseInput from "@/components/ui/BaseInput.vue";
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default defineComponent({
   name: "commercial-offer-form",
@@ -74,9 +85,9 @@ export default defineComponent({
     };
   },
   emits: ["submit:pick-up"],
-  components: { BaseInput },
+  components: { BaseInput, BaseButton },
   methods: {
-    onClick(event: Event) {
+    onSubmit(event: Event) {
       event.preventDefault();
       this.selectedProduct.categoryId = this.products.find(
         (product: IProductCategoryData) =>

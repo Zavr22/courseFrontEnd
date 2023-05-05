@@ -23,8 +23,8 @@
 <script lang="ts">
 import axios from "axios";
 import { defineComponent } from "vue";
-import LoginForm from "@/components/LoginForm.vue";
-import IUserCredentials from "@/components/interfaces/IUserCredentials";
+import LoginForm from "@/modules/login/components/LoginForm.vue";
+import IUserCredentials from "@/modules/login/interfaces/IUserCredentials";
 import Entry from "@/components/EntryBackground.vue";
 
 export default defineComponent({
@@ -82,6 +82,7 @@ export default defineComponent({
       if (user !== undefined) {
         console.log("ok");
         this.saveUserToLocalStorage(user);
+
         this.$router.push("/");
       } else {
         this.invalidData = true;
