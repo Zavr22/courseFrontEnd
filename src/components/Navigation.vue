@@ -53,6 +53,9 @@
         </router-link>
       </ul>
     </nav>
+    <div class="logout" @click="logout">
+      <span class="logout__text">Logout</span>
+    </div>
   </div>
 </template>
 
@@ -61,6 +64,12 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "navigation",
+  methods: {
+    logout() {
+      localStorage.removeItem("userID");
+      this.$router.push({ name: "login" });
+    },
+  },
   computed: {
     isDirector(): boolean {
       return localStorage.getItem("userID") === "1";

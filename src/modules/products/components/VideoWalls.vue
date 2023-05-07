@@ -1,6 +1,6 @@
 <template>
-  <div class="monitors">
-    <h3 class="title">Title: Monitors</h3>
+  <div class="videowalls">
+    <h3 class="title">Title: Video walls</h3>
     <BaseCheckbox
       class="sort__checkbox"
       :value="sortByPriceTitle"
@@ -10,24 +10,27 @@
         }
       "
     ></BaseCheckbox>
-    <MonitorsList class="monitors-list" :monitors="monitors"></MonitorsList>
+    <VideoWallsList
+      class="videowalls-list"
+      :videowalls="videowalls"
+    ></VideoWallsList>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import IMonitor from "@/modules/products/interfaces/IMonitor";
-import MonitorsList from "@/modules/products/components/MonitorsList.vue";
+import IVideowall from "@/modules/products/interfaces/IVideowall";
+import VideoWallsList from "@/modules/products/components/VideoWallsList.vue";
 import BaseCheckbox from "@/components/ui/BaseCheckbox.vue";
 import axios from "axios";
 
 export default defineComponent({
-  name: "product-monitors",
-  components: { BaseCheckbox, MonitorsList },
+  name: "product-videowalls",
+  components: { BaseCheckbox, VideoWallsList },
   data() {
     return {
       sortByPriceTitle: "Сортировать по возрастанию цены" as string,
-      monitors: [] as Array<IMonitor>,
+      videowalls: [] as Array<IVideowall>,
     };
   },
   mounted() {
@@ -36,10 +39,10 @@ export default defineComponent({
   methods: {
     async getMonitors() {
       let data = await axios.get(
-        `${process.env.VUE_APP_SERVER_URL}/prod/monitors`
+        `${process.env.VUE_APP_SERVER_URL}/prod/videoW`
       );
       console.log(data);
-      this.monitors = data.data.data;
+      this.videowalls = data.data.data;
       this.sortDescendingOrder();
     },
     sortMonitors(value: boolean) {
@@ -50,12 +53,12 @@ export default defineComponent({
       }
     },
     sortAscendingOrder() {
-      this.monitors.sort((a: IMonitor, b: IMonitor) => {
+      this.videowalls.sort((a: IVideowall, b: IVideowall) => {
         return a.price - b.price;
       });
     },
     sortDescendingOrder() {
-      this.monitors.sort((a: IMonitor, b: IMonitor) => {
+      this.videowalls.sort((a: IVideowall, b: IVideowall) => {
         return b.price - a.price;
       });
     },
@@ -64,10 +67,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.monitors {
+.videowalls {
   width: 100%;
 }
-.monitors-list {
+.videowalls-list {
   margin-top: 20px;
 }
 .title {

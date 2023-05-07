@@ -1,4 +1,4 @@
-interface IProduct {
+interface IMonitor {
   id: number;
   name: string;
   categoryId: number;
@@ -8,4 +8,4 @@ interface IProduct {
   price: number;
 }
 
-export default IProduct;
+export default IMonitor;

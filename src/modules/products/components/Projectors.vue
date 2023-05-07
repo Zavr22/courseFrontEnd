@@ -1,48 +1,49 @@
 <template>
-  <div class="monitors">
-    <h3 class="title">Title: Monitors</h3>
+  <div class="projectors">
+    <h3 class="title">Title: Projectors</h3>
     <BaseCheckbox
       class="sort__checkbox"
       :value="sortByPriceTitle"
       @update:checkbox="
         (value) => {
-          sortMonitors(value);
+          sortProjectors(value);
         }
       "
     ></BaseCheckbox>
-    <MonitorsList class="monitors-list" :monitors="monitors"></MonitorsList>
+    <ProjectorsList
+      class="projectors-list"
+      :projectors="projectors"
+    ></ProjectorsList>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import IMonitor from "@/modules/products/interfaces/IMonitor";
-import MonitorsList from "@/modules/products/components/MonitorsList.vue";
+import IProjector from "@/modules/products/interfaces/IProjector";
+import ProjectorsList from "@/modules/products/components/ProjectorsList.vue";
 import BaseCheckbox from "@/components/ui/BaseCheckbox.vue";
 import axios from "axios";
 
 export default defineComponent({
-  name: "product-monitors",
-  components: { BaseCheckbox, MonitorsList },
+  name: "product-projectors",
+  components: { BaseCheckbox, ProjectorsList },
   data() {
     return {
       sortByPriceTitle: "Сортировать по возрастанию цены" as string,
-      monitors: [] as Array<IMonitor>,
+      projectors: [] as Array<IProjector>,
     };
   },
   mounted() {
-    this.getMonitors();
+    this.getProjectors();
   },
   methods: {
-    async getMonitors() {
-      let data = await axios.get(
-        `${process.env.VUE_APP_SERVER_URL}/prod/monitors`
-      );
+    async getProjectors() {
+      let data = await axios.get(`${process.env.VUE_APP_SERVER_URL}/prod/proj`);
       console.log(data);
-      this.monitors = data.data.data;
+      this.projectors = data.data.data;
       this.sortDescendingOrder();
     },
-    sortMonitors(value: boolean) {
+    sortProjectors(value: boolean) {
       if (value) {
         this.sortAscendingOrder();
       } else {
@@ -50,12 +51,12 @@ export default defineComponent({
       }
     },
     sortAscendingOrder() {
-      this.monitors.sort((a: IMonitor, b: IMonitor) => {
+      this.projectors.sort((a: IProjector, b: IProjector) => {
         return a.price - b.price;
       });
     },
     sortDescendingOrder() {
-      this.monitors.sort((a: IMonitor, b: IMonitor) => {
+      this.projectors.sort((a: IProjector, b: IProjector) => {
         return b.price - a.price;
       });
     },
@@ -64,10 +65,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.monitors {
+.projectors {
   width: 100%;
 }
-.monitors-list {
+.projectors-list {
   margin-top: 20px;
 }
 .title {

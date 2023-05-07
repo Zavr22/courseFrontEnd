@@ -6,18 +6,18 @@
           <th>Name</th>
           <th>Price</th>
           <th>Quantity</th>
-          <th>Brightness</th>
-          <th>Contrast</th>
+          <th>Max weight</th>
+          <th>ROI</th>
         </tr>
       </thead>
       <tbody>
-        <template v-for="product in products" :key="product.id">
+        <template v-for="mount in mounts" :key="mount.id">
           <tr class="product__row">
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.quantity }}</td>
-            <td>{{ product.brightness }}</td>
-            <td>{{ product.contrast }}</td>
+            <td>{{ mount.name }}</td>
+            <td>{{ mount.price }}</td>
+            <td>{{ mount.quantity }}</td>
+            <td>{{ mount.max_weight }}</td>
+            <td>{{ mount.roi }}</td>
           </tr>
         </template>
       </tbody>
@@ -27,15 +27,13 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import ProductItem from "@/modules/products/components/ProductItem.vue";
-import IProduct from "@/modules/products/interfaces/IProduct";
+import IMount from "@/modules/products/interfaces/IMount";
 
 export default defineComponent({
   name: "products-list",
-  components: { ProductItem },
   props: {
-    products: {
-      type: [] as PropType<Array<IProduct>>,
+    mounts: {
+      type: [] as PropType<Array<IMount>>,
       required: true,
     },
   },

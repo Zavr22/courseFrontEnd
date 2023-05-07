@@ -5,19 +5,21 @@
         <router-link class="categories__item" :to="{ name: 'product-monitors' }"
           >Monitors</router-link
         >
-        <!--        <router-link-->
-        <!--          class="categories__item"-->
-        <!--          :to="{ name: 'product-projectors' }"-->
-        <!--          >Projectors</router-link-->
-        <!--        >-->
-        <!--        <router-link class="categories__item" :to="{ name: 'product-tvs' }"-->
-        <!--          >TVs</router-link-->
-        <!--        >-->
-        <!--        <router-link-->
-        <!--          class="categories__item"-->
-        <!--          :to="{ name: 'product-projection-screens' }"-->
-        <!--          >Projection screens</router-link-->
-        <!--        >-->
+        <router-link
+          class="categories__item"
+          :to="{ name: 'product-projectors' }"
+        >
+          Projectors</router-link
+        >
+        <router-link
+          class="categories__item"
+          :to="{ name: 'product-videowalls' }"
+        >
+          Video walls</router-link
+        >
+        <router-link class="categories__item" :to="{ name: 'product-mounts' }">
+          Mounts</router-link
+        >
       </div>
       <router-view v-else></router-view>
     </div>
