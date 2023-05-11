@@ -1,6 +1,6 @@
 <template>
   <div class="videowalls">
-    <h3 class="title">Title: Video walls</h3>
+    <h3 class="title">Video walls list</h3>
     <BaseCheckbox
       class="sort__checkbox"
       :value="sortByPriceTitle"
@@ -29,7 +29,7 @@ export default defineComponent({
   components: { BaseCheckbox, VideoWallsList },
   data() {
     return {
-      sortByPriceTitle: "Сортировать по возрастанию цены" as string,
+      sortByPriceTitle: "Sort by ascending price" as string,
       videowalls: [] as Array<IVideowall>,
     };
   },

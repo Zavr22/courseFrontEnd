@@ -1,6 +1,6 @@
 <template>
   <div class="mounts">
-    <h3 class="title">Title: Mounts</h3>
+    <h3 class="title">Mounts list</h3>
     <BaseCheckbox
       class="sort__checkbox"
       :value="sortByPriceTitle"
@@ -26,7 +26,7 @@ export default defineComponent({
   components: { BaseCheckbox, MountsList },
   data() {
     return {
-      sortByPriceTitle: "Сортировать по возрастанию цены" as string,
+      sortByPriceTitle: "Sort by ascending price" as string,
       mounts: [] as Array<IMount>,
     };
   },
@@ -39,7 +39,12 @@ export default defineComponent({
         `${process.env.VUE_APP_SERVER_URL}/prod/mounts`
       );
       console.log(data);
-      this.mounts = data.data.data;
+      this.mounts = data.data.data.map((mount: any) => {
+        return {
+          ...mount,
+          max_weight: mount["max-weight"],
+        } as IMount;
+      });
       this.sortDescendingOrder();
     },
     sortMounts(value: boolean) {

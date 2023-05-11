@@ -1,13 +1,16 @@
 <template>
   <div class="wrapper">
     <template v-if="currentRoutePath === 'deals'">
+      <h2 class="approved-amount">
+        Number of approved deals: {{ approvedDealsAmount }}
+      </h2>
       <div class="links">
         <RouterLink
           class="deal-link"
-          v-for="id in dealIDs"
-          :key="id"
-          :to="`/deals/${id}`"
-          >Deal #{{ id }}</RouterLink
+          v-for="deal in deals"
+          :key="deal.id"
+          :to="`/deals/${deal.id}`"
+          >Deal #{{ deal.id }} ({{ deal.status }})</RouterLink
         >
       </div>
     </template>
@@ -19,11 +22,16 @@
 import { defineComponent } from "vue";
 import axios from "axios";
 
+interface IDeal {
+  id: number;
+  status: string;
+}
+
 export default defineComponent({
   name: "deals",
   data() {
     return {
-      dealIDs: [] as Array<number>,
+      deals: [] as Array<IDeal>,
     };
   },
   mounted() {
@@ -53,12 +61,19 @@ export default defineComponent({
         );
       }
 
-      this.dealIDs = result.data.data.map((element: any) => {
-        return element.id;
+      this.deals = result.data.data.map((element: any) => {
+        return {
+          id: element.id,
+          status: element.status,
+        } as IDeal;
       });
     },
   },
   computed: {
+    approvedDealsAmount(): number {
+      return this.deals.filter((deal: IDeal) => deal.status === "approved")
+        .length;
+    },
     currentRoutePath() {
       return this.$route.name;
     },
@@ -69,6 +84,7 @@ export default defineComponent({
 <style scoped>
 .wrapper {
   padding: 20px 10px;
+  overflow: auto;
 }
 .list {
   display: flex;
@@ -83,13 +99,18 @@ export default defineComponent({
 .deal-link {
   color: #ffffff;
   font-size: 24px;
+  width: max-content;
+}
+
+.approved-amount {
+  margin-bottom: 20px;
+  color: #ffffff;
+  width: max-content;
 }
 
 .links {
-  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow: auto;
 }
 </style>

@@ -18,6 +18,30 @@
         </template>
       </tbody>
     </table>
+    <template v-if="userID === 1">
+      <div class="control-buttons">
+        <BaseButton
+          v-if="isApproved"
+          class="cancel-btn"
+          @click="unapproveOffer"
+          :button-title="'Unapprove'"
+          :button-type="'button'"
+          :button-title-color="'#000000'"
+          :button-background-color="'rgba(217, 217, 217, 1)'"
+        >
+        </BaseButton>
+        <BaseButton
+          v-else
+          class="approve-btn"
+          @click="approveOffer"
+          :button-title="'Approve'"
+          :button-type="'button'"
+          :button-title-color="'#000000'"
+          :button-background-color="'rgba(217, 217, 217, 1)'"
+        >
+        </BaseButton>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -25,9 +49,13 @@
 import { defineComponent } from "vue";
 import axios from "axios";
 import IDealProduct from "@/modules/deals/interfaces/IDealProduct";
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default defineComponent({
   name: "deal-products",
+  components: {
+    BaseButton,
+  },
   data() {
     return {
       products: [] as Array<IDealProduct>,
@@ -72,9 +100,34 @@ export default defineComponent({
       } as IDealProduct;
     });
   },
+  methods: {
+    async approveOffer() {
+      await axios.post(
+        `${process.env.VUE_APP_SERVER_URL}/commO/confirm`,
+        {
+          offerId: this.dealID,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Id": this.userID,
+          },
+        }
+      );
+
+      this.$router.go(0);
+    },
+    unapproveOffer() {
+      console.log("unapprove");
+      this.$router.go(0);
+    },
+  },
   computed: {
     dealID(): number {
       return +this.$route.params.id;
+    },
+    userID(): number {
+      return +localStorage.getItem("userID")!;
     },
   },
 });
@@ -128,5 +181,11 @@ export default defineComponent({
   color: #ffffff;
   margin-top: 10px;
   font-size: 20px;
+}
+
+.control-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 50px;
 }
 </style>

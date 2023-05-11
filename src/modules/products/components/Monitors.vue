@@ -1,6 +1,6 @@
 <template>
   <div class="monitors">
-    <h3 class="title">Title: Monitors</h3>
+    <h3 class="title">Monitor list</h3>
     <BaseCheckbox
       class="sort__checkbox"
       :value="sortByPriceTitle"
@@ -26,7 +26,7 @@ export default defineComponent({
   components: { BaseCheckbox, MonitorsList },
   data() {
     return {
-      sortByPriceTitle: "Сортировать по возрастанию цены" as string,
+      sortByPriceTitle: "Sort by ascending price" as string,
       monitors: [] as Array<IMonitor>,
     };
   },
