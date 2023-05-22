@@ -117,8 +117,19 @@ export default defineComponent({
 
       this.$router.go(0);
     },
-    unapproveOffer() {
-      console.log("unapprove");
+    async unapproveOffer() {
+      await axios.post(
+        `${process.env.VUE_APP_SERVER_URL}/commO/cancelC`,
+        {
+          offerId: this.dealID,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Id": this.userID,
+          },
+        }
+      );
       this.$router.go(0);
     },
   },

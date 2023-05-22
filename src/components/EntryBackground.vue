@@ -15,7 +15,7 @@ export default defineComponent({
   data() {
     return {
       appTitle: "Insightly" as String,
-      appSubtitle: "CRM software" as String,
+      appSubtitle: "SPQ software" as String,
     };
   },
 });
